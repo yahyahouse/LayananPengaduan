@@ -1,15 +1,12 @@
 package com.DPR.SingaRusia.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-@Setter
-@Getter
+@Data
 @Entity(name = "users")
 public class Users {
 
@@ -35,4 +32,10 @@ public class Users {
 
     @Column(name = "phone")
     private String phone;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Roles> roles = new HashSet<>();
 }
