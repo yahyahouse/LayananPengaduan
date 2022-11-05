@@ -1,4 +1,4 @@
-package com.DPR.SingaRusia.model;
+package com.yahya.layananPengaduan.model;
 
 import lombok.Data;
 
