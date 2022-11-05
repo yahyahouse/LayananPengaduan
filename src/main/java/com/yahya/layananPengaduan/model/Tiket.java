@@ -22,4 +22,6 @@ public class Tiket {
 
     @Column (name = "deskripsi")
     private String deskripsi;
+
+
 }
