@@ -1,6 +1,6 @@
-package com.yahya.layananPengaduan.service;
+package com.yahya.layananPengaduan.service.tiket;
 
-import com.yahya.layananPengaduan.model.Tiket;
+import com.yahya.layananPengaduan.model.tiket.Tiket;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

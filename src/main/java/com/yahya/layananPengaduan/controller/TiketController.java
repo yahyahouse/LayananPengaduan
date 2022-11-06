@@ -1,17 +1,14 @@
 package com.yahya.layananPengaduan.controller;
 
 import com.yahya.layananPengaduan.dto.TiketResponse;
-import com.yahya.layananPengaduan.model.Tiket;
-import com.yahya.layananPengaduan.model.Users;
-import com.yahya.layananPengaduan.service.TiketService;
-import com.yahya.layananPengaduan.service.UsersService;
+import com.yahya.layananPengaduan.model.tiket.Tiket;
+import com.yahya.layananPengaduan.model.users.Users;
+import com.yahya.layananPengaduan.service.tiket.TiketService;
+import com.yahya.layananPengaduan.service.users.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-
-import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/tiket")

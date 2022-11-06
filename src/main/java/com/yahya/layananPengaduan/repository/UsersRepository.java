@@ -1,6 +1,6 @@
 package com.yahya.layananPengaduan.repository;
 
-import com.yahya.layananPengaduan.model.Users;
+import com.yahya.layananPengaduan.model.users.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsersRepository extends JpaRepository<Users, Integer> {

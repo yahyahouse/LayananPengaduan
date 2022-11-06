@@ -1,7 +1,7 @@
 package com.yahya.layananPengaduan.config;
 
 import com.yahya.layananPengaduan.model.ERole;
-import com.yahya.layananPengaduan.service.UserDetailsServiceImpl;
+import com.yahya.layananPengaduan.service.users.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

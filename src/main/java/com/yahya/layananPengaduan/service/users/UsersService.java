@@ -1,9 +1,7 @@
-package com.yahya.layananPengaduan.service;
+package com.yahya.layananPengaduan.service.users;
 
-import com.yahya.layananPengaduan.model.Users;
+import com.yahya.layananPengaduan.model.users.Users;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityManager;
 
 @Service
 public interface  UsersService {

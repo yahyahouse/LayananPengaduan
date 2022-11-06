@@ -1,4 +1,4 @@
-package com.yahya.layananPengaduan.model;
+package com.yahya.layananPengaduan.model.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,5 +1,6 @@
-package com.yahya.layananPengaduan.model;
+package com.yahya.layananPengaduan.model.tiket;
 
+import com.yahya.layananPengaduan.model.users.Users;
 import lombok.Data;
 
 import javax.persistence.*;

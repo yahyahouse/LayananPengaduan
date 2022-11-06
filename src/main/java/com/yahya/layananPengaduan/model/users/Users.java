@@ -1,5 +1,6 @@
-package com.yahya.layananPengaduan.model;
+package com.yahya.layananPengaduan.model.users;
 
+import com.yahya.layananPengaduan.model.Roles;
 import lombok.Data;
 
 import javax.persistence.*;

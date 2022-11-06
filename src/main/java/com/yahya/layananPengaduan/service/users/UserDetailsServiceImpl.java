@@ -1,8 +1,8 @@
-package com.yahya.layananPengaduan.service;
+package com.yahya.layananPengaduan.service.users;
 
 
-import com.yahya.layananPengaduan.model.UserDetailsImpl;
-import com.yahya.layananPengaduan.model.Users;
+import com.yahya.layananPengaduan.model.users.UserDetailsImpl;
+import com.yahya.layananPengaduan.model.users.Users;
 import com.yahya.layananPengaduan.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,6 @@
 package com.yahya.layananPengaduan.dto;
 
-import com.yahya.layananPengaduan.model.Tiket;
+import com.yahya.layananPengaduan.model.tiket.Tiket;
 import lombok.Data;
 
 @Data

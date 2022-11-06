@@ -1,6 +1,6 @@
 package com.yahya.layananPengaduan.config;
 
-import com.yahya.layananPengaduan.model.UserDetailsImpl;
+import com.yahya.layananPengaduan.model.users.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

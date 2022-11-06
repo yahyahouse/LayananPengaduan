@@ -1,9 +1,9 @@
-package com.yahya.layananPengaduan.service;
+package com.yahya.layananPengaduan.service.tiket;
 
-import com.yahya.layananPengaduan.model.Tiket;
-import com.yahya.layananPengaduan.model.Users;
+import com.yahya.layananPengaduan.model.tiket.Tiket;
 import com.yahya.layananPengaduan.repository.TiketRepository;
 import com.yahya.layananPengaduan.repository.UsersRepository;
+import com.yahya.layananPengaduan.service.tiket.TiketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
-public class TiketServiceImpl implements TiketService{
+public class TiketServiceImpl implements TiketService {
     EntityManager entityManager;
 
     @Autowired
