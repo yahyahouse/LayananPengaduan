@@ -5,11 +5,13 @@ import com.yahya.layananPengaduan.model.tiket.Tiket;
 import com.yahya.layananPengaduan.model.users.Users;
 import com.yahya.layananPengaduan.service.tiket.TiketService;
 import com.yahya.layananPengaduan.service.users.UsersService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Tiket")
 @RestController
 @RequestMapping("/tiket")
 public class TiketController {
