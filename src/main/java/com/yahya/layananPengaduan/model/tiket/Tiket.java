@@ -10,8 +10,8 @@ import javax.persistence.*;
 public class Tiket {
 
     @Id
-    @GeneratedValue
-    @Column(name = "tket_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tket_id",nullable = false)
     private Integer tiketId;
 
     @ManyToOne

@@ -14,6 +14,6 @@ import java.util.List;
 public interface TiketRepository extends JpaRepository<Tiket,Integer> {
 
 
-    @Query(value = "select * from tiket where tiket_id =:tiket_id", nativeQuery = true)
-    List<Tiket> getTiketByTiketId(@Param("tiket_id") Integer tiketId);
+    @Query(value = "select * from tiket t where t.user_id =:userId", nativeQuery = true)
+    List<Tiket> getTiketByUserId (Integer userId);
 }

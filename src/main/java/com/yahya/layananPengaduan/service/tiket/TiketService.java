@@ -9,5 +9,5 @@ import java.util.List;
 public interface TiketService {
 
     void saveTiket(Tiket tiket);
-    List<Tiket> getTiketByTiketId (Integer tiketId);
+    List<Tiket> getTiketByUserId (Integer userId);
 }

@@ -4,7 +4,7 @@ import com.yahya.layananPengaduan.model.tiket.Tiket;
 import lombok.Data;
 
 @Data
-public class TiketResponse {
+public class TiketAddResponse {
 
     private Integer tiketId;
     private Integer userId;
@@ -12,7 +12,8 @@ public class TiketResponse {
     private String deskripsi;
     private String kodeTiket;
 
-    public TiketResponse(Tiket tiket) {
+    public TiketAddResponse(Tiket tiket) {
+        this.tiketId = tiket.getTiketId();
         this.userId = tiket.getUserId().getUserId();
         this.judulPermasalahan = tiket.getJudulPermasalahan();
         this.deskripsi = tiket.getDeskripsi();

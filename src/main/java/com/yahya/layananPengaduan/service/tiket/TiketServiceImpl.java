@@ -34,7 +34,7 @@ public class TiketServiceImpl implements TiketService {
     }
 
     @Override
-    public List<Tiket> getTiketByTiketId(Integer tiketId) {
-        return tiketRepository.getTiketByTiketId(tiketId);
+    public List<Tiket> getTiketByUserId(Integer userId) {
+        return tiketRepository.getTiketByUserId(userId);
     }
 }
