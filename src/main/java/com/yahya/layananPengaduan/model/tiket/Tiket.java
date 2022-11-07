@@ -24,5 +24,7 @@ public class Tiket {
     @Column (name = "deskripsi")
     private String deskripsi;
 
+    @Column(name = "kode_tiket")
+    private String kodeTiket;
 
 }

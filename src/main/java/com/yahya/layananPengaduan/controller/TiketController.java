@@ -11,10 +11,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+
 @Tag(name = "Tiket")
 @RestController
 @RequestMapping("/tiket")
 public class TiketController {
+
+    EntityManager entityManager;
 
     @Autowired
     private TiketService tiketService;
@@ -32,6 +36,7 @@ public class TiketController {
         tiket.setJudulPermasalahan(judulPermasalahan);
         tiket.setDeskripsi(deskripsi);
         tiketService.saveTiket(tiket);
+        tiket.getTiketId();
 
         return new ResponseEntity(new TiketResponse(tiket), HttpStatus.OK);
     }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TiketServiceImpl implements TiketService {
@@ -26,6 +27,8 @@ public class TiketServiceImpl implements TiketService {
     }
     @Override
     public void saveTiket(Tiket tiket) {
+        UUID uuid = UUID.randomUUID();
+        tiket.setKodeTiket(String.valueOf(uuid));
         tiketRepository.save(tiket);
 
     }
