@@ -1,9 +1,12 @@
 package com.yahya.layananPengaduan.service.tiket;
 
+import com.yahya.layananPengaduan.config.AuthEntryPointJwt;
 import com.yahya.layananPengaduan.model.tiket.Tiket;
 import com.yahya.layananPengaduan.repository.TiketRepository;
 import com.yahya.layananPengaduan.repository.UsersRepository;
 import com.yahya.layananPengaduan.service.tiket.TiketService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,7 @@ import java.util.UUID;
 public class TiketServiceImpl implements TiketService {
     EntityManager entityManager;
 
+    private static final Logger LOG = LoggerFactory.getLogger(TiketServiceImpl.class);
     @Autowired
     private TiketRepository tiketRepository;
 
@@ -27,9 +31,14 @@ public class TiketServiceImpl implements TiketService {
     }
     @Override
     public void saveTiket(Tiket tiket) {
-        UUID uuid = UUID.randomUUID();
-        tiket.setKodeTiket(String.valueOf(uuid));
-        tiketRepository.save(tiket);
+        try {
+            UUID uuid = UUID.randomUUID();
+            tiket.setKodeTiket(String.valueOf(uuid));
+            tiketRepository.save(tiket);
+        }catch (Exception e){
+            LOG.info("Tidak Bisa Menambahakan Tiket",e);
+        }
+
 
     }
 
