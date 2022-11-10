@@ -1,5 +1,7 @@
 package com.yahya.layananPengaduan.model.tiket;
 
+import com.yahya.layananPengaduan.model.ERole;
+import com.yahya.layananPengaduan.model.Status;
 import com.yahya.layananPengaduan.model.users.Users;
 import lombok.Data;
 
@@ -11,7 +13,7 @@ public class Tiket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tket_id",nullable = false)
+    @Column(name = "tiket_id",nullable = false)
     private Integer tiketId;
 
     @ManyToOne
@@ -27,4 +29,7 @@ public class Tiket {
     @Column(name = "kode_tiket")
     private String kodeTiket;
 
+    @Enumerated(EnumType.STRING)
+    @Column
+    private Status status;
 }

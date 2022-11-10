@@ -1,6 +1,8 @@
 package com.yahya.layananPengaduan.service.tiket;
 
 import com.yahya.layananPengaduan.config.AuthEntryPointJwt;
+import com.yahya.layananPengaduan.dto.TiketUpdateStatusResponse;
+import com.yahya.layananPengaduan.model.Status;
 import com.yahya.layananPengaduan.model.tiket.Tiket;
 import com.yahya.layananPengaduan.repository.TiketRepository;
 import com.yahya.layananPengaduan.repository.UsersRepository;
@@ -46,4 +48,19 @@ public class TiketServiceImpl implements TiketService {
     public List<Tiket> getTiketByUserId(Integer userId) {
         return tiketRepository.getTiketByUserId(userId);
     }
+
+    @Override
+    public void updateStatusTiket(Tiket tiket) {
+        tiketRepository.save(tiket);
+
+//        tiketRepository.updateStatusTiket(Status.DONE,tiketId);
+
+    }
+
+    @Override
+    public Tiket getTiketByTiketId(Integer tiketId) {
+        return tiketRepository.getTiketByTiketId(tiketId);
+    }
+
+
 }

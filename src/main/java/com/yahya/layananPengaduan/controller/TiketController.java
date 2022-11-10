@@ -2,6 +2,7 @@ package com.yahya.layananPengaduan.controller;
 
 import com.yahya.layananPengaduan.dto.TiketAddResponse;
 import com.yahya.layananPengaduan.dto.TiketGetResponse;
+import com.yahya.layananPengaduan.model.Status;
 import com.yahya.layananPengaduan.model.tiket.Tiket;
 import com.yahya.layananPengaduan.model.users.Users;
 import com.yahya.layananPengaduan.service.tiket.TiketService;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.yahya.layananPengaduan.model.Info.UPDATE_STATUS_TIKET;
 
 @Tag(name = "Tiket")
 @RestController
@@ -33,12 +36,14 @@ public class TiketController {
     public ResponseEntity<TiketAddResponse> addTiket(
             @RequestParam("user_id") Integer userId,
             @RequestParam("judul_permasalahan") String judulPermasalahan,
-            @RequestParam("deskripsi") String deskripsi){
+            @RequestParam("deskripsi") String deskripsi
+    ){
         Tiket tiket = new Tiket();
         Users users = usersService.findByUserId(userId);
         tiket.setUserId(users);
         tiket.setJudulPermasalahan(judulPermasalahan);
         tiket.setDeskripsi(deskripsi);
+        tiket.setStatus(Status.ONPROCESS);
         tiketService.saveTiket(tiket);
         tiket.getTiketId();
 
@@ -53,5 +58,15 @@ public class TiketController {
                 tiket.stream().map(TiketGetResponse::new).collect(Collectors.toList());
 
         return new ResponseEntity(tiketGetResponse,HttpStatus.OK);
+    }
+
+    @PostMapping("/admin/update-tiket-status/{tiketId}")
+    public ResponseEntity<TiketGetResponse> updateStatusTiket(
+            @PathVariable("tiketId") Integer tiketId
+    ){
+        Tiket tiket = tiketService.getTiketByTiketId(tiketId);
+        tiket.setStatus(Status.DONE);
+        tiketService.updateStatusTiket(tiket);
+        return new ResponseEntity(new TiketGetResponse(tiket),HttpStatus.OK);
     }
 }
