@@ -75,6 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .permitAll()
                 .antMatchers("/tiket/**")
                 .hasAuthority(ERole.USER.name())
+                .antMatchers("http://localhost:8080/ws")
+                .anonymous()
                 .anyRequest()
                 .authenticated();
 
