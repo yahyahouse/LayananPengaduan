@@ -6,9 +6,11 @@ import com.yahya.layananPengaduan.model.users.UserDetailsImpl;
 import com.yahya.layananPengaduan.model.users.Users;
 import com.yahya.layananPengaduan.repository.RoleRepository;
 import com.yahya.layananPengaduan.repository.UsersRepository;
+import com.yahya.layananPengaduan.service.users.UsersService;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +27,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.yahya.layananPengaduan.model.Info.*;
+
 @Tag(name = "Auth", description = "API for processing various operations with Auth entity")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -35,6 +39,9 @@ public class AuthController {
 
     @Autowired
     UsersRepository usersRepository;
+
+    @Autowired
+    UsersService usersService;
 
     @Autowired
     RoleRepository roleRepository;
@@ -79,7 +86,7 @@ public class AuthController {
                     "\"username\":\"userTest\"," +
                     "\"email\":\"userTest@gmail.com\"," +
                     "\"password\":\"userTest\"," +
-                    "\"role\":[\"SELLER\", \"BUYER\"]" +
+                    "\"role\":[\"USER\", \"ADMIN\"]" +
                     "}")
             @RequestBody SignupRequest signupRequest) {
         Boolean usernameExist = usersRepository.existsByUsername(signupRequest.getUsername());
@@ -115,5 +122,25 @@ public class AuthController {
         usersRepository.save(users);
         return ResponseEntity.ok(new MessageResponse("User registered successfully"));
 
+    }
+    @PostMapping("/user/update-users-password/{userId}")
+    public ResponseEntity<ResponseEntity> updateUsersPassword(
+            @PathVariable("userId") Integer userId,
+            @RequestParam("old_password") String oldPassword,
+            @RequestParam("password") String password,
+            @RequestParam("retype_password") String retypePassword,
+            Authentication authentication) {
+        Users user = usersService.findByUsername(authentication.getName());
+        user.setUserId(userId);
+        Users users = usersRepository.findByUserId(userId);
+        if (password.equals(retypePassword)) {
+            if (passwordEncoder.matches(oldPassword, users.getPassword())) {
+                usersService.updateUsersPassword(password, userId);
+                return new ResponseEntity(PASSWORD_TERGANTI, HttpStatus.OK);
+            } else
+                return new ResponseEntity(SALAH_PASSWORD, HttpStatus.BAD_REQUEST);
+
+        } else
+            return new ResponseEntity(PASSWORD_SAMA, HttpStatus.BAD_REQUEST);
     }
 }

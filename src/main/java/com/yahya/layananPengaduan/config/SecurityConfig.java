@@ -15,8 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
@@ -58,10 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .cors()
+                .oauth2Login()
                 .and()
-                .csrf()
-                .disable()
+                .cors().disable()
+                .csrf().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint(unauthorizedHandler)
                 .and()
@@ -69,14 +70,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth/**")
+                .antMatchers("/api/auth/signin")
                 .permitAll()
+                .antMatchers("/api/auth/signup")
+                .permitAll()
+                .antMatchers("/**")
+                .permitAll()
+                .antMatchers("/api/auth/user/**")
+                .hasAuthority(ERole.USER.name())
                 .antMatchers("/api/test/**")
                 .permitAll()
                 .antMatchers("/tiket/**")
                 .hasAuthority(ERole.USER.name())
                 .antMatchers("http://localhost:8080/ws")
-                .anonymous()
+                .permitAll()
                 .anyRequest()
                 .authenticated();
 
